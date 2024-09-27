@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 import CursosEntity from './CursoEntity';
 
-@Entity('estudante')
+@Entity('estudantes')
 export default class EstudanteEntity {
   @PrimaryColumn()
   cpf: string;
@@ -12,6 +12,6 @@ export default class EstudanteEntity {
   @ManyToOne(() => CursosEntity, (curso) => curso.estudantes)
   curso: CursosEntity;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, unique: true })
   matricula: string;
 }
