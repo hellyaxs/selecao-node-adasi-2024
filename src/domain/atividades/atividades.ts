@@ -1,10 +1,11 @@
+import { UUID } from 'crypto';
 import { Estudante } from '../estudante/estudante';
 import { Tarefas } from '../tarefas/tarefas';
 
 export class Atividades {
-  id: number;
+  id: UUID;
   tarefa: Tarefas;
-  estuante: Estudante;
+  estudante: Estudante;
   data: Date;
   horario_agendado_inicio: Date;
   horario_agendado_termino: Date;
