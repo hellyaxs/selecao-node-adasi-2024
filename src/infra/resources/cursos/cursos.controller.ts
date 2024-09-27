@@ -10,7 +10,9 @@ import {
 import { CursosService } from './cursos.service';
 import { CreateCursoDto } from './dto/create-curso.dto';
 import { UpdateCursoDto } from './dto/update-curso.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('cursos')
 @Controller('cursos')
 export class CursosController {
   constructor(private readonly cursosService: CursosService) {}
@@ -27,16 +29,16 @@ export class CursosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.cursosService.findOne(+id);
+    return this.cursosService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCursoDto: UpdateCursoDto) {
-    return this.cursosService.update(+id, updateCursoDto);
+    return this.cursosService.update(id, updateCursoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.cursosService.remove(+id);
+    return this.cursosService.remove(id);
   }
 }

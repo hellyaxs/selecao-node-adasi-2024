@@ -5,8 +5,8 @@ export class Cursos {
   id: UUID;
   nome: string;
 
-  constructor(id: UUID, nome: string) {
-    this.id = id;
+  constructor(id: string, nome: string) {
+    this.id = id as UUID;
     this.nome = nome;
   }
 

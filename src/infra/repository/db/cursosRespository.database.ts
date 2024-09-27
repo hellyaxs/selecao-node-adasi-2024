@@ -14,17 +14,17 @@ export default class CursosRepositoryDB {
     return this.entityRepository.save(data);
   }
 
-  updateCurso(data: CursosEntity): Promise<CursosEntity> {
-    return this.entityRepository.save(data);
+  updateCurso(id: string, data: CursosEntity): Promise<CursosEntity> {
+    return this.entityRepository.update(data.id, data).then(() => data);
   }
 
   deleteCurso(id: string): void {
     this.entityRepository.delete(id);
   }
 
-  //   getCurso(id: string): Promise<CursosEntity | void> {
-  //     return this.entityRepository.findOneBy(id);
-  //   }
+  getCurso(id: string): Promise<CursosEntity | void> {
+    return this.entityRepository.findOneBy({ id } as { id: string });
+  }
 
   getCursos(): Promise<CursosEntity[] | void> {
     return this.entityRepository.find();
