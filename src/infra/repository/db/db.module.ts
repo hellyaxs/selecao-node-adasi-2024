@@ -1,16 +1,25 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import DatabaseAtividadeRepository from './database-atividdadeRepository';
-import CursosRepositoryDB from './cursosRespository.database';
+import CursosRepositoryDB from './sql/cursosRespository.database';
 import CursoEntity from './entities/CursoEntity';
+import TarefasEntity from './entities/TarefasEntity';
+import EstudanteEntity from './entities/EstudanteEntity';
+import AtividadeEntity from './entities/AtividadeEntity';
+import DatabaseTarefasRepository from './sql/tarefasRepository.database';
+import DatabaseAtividadeRepository from './sql/atividadeRepository.database';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // Torna o ConfigService acessível em qualquer lugar sem precisar importar
     }),
-    TypeOrmModule.forFeature([CursoEntity]),
+    TypeOrmModule.forFeature([
+      CursoEntity,
+      TarefasEntity,
+      EstudanteEntity,
+      AtividadeEntity,
+    ]),
     TypeOrmModule.forRootAsync({
       useFactory: async (configService: ConfigService) => ({
         type: 'postgres',
@@ -33,6 +42,10 @@ import CursoEntity from './entities/CursoEntity';
     // },
     CursosRepositoryDB,
   ],
-  exports: [CursosRepositoryDB],
+  exports: [
+    CursosRepositoryDB,
+    DatabaseTarefasRepository,
+    DatabaseAtividadeRepository,
+  ],
 })
 export class DbModule {}

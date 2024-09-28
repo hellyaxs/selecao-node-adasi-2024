@@ -1,7 +1,7 @@
 import AtividadesRepository from 'src/application/repository/atividadesRepository';
 import { Atividades } from 'src/domain/atividades/atividades';
 import { Repository } from 'typeorm';
-import AtividadeEntity from './entities/AtividadeEntity';
+import AtividadeEntity from '../entities/AtividadeEntity';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

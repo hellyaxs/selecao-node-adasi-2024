@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import CursosEntity from './entities/CursoEntity';
+import CursosEntity from '../entities/CursoEntity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
