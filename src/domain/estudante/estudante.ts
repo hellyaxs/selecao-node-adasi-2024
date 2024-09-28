@@ -5,4 +5,11 @@ export class Estudante {
   nome: string;
   curso: Cursos;
   matricula: string;
+
+  constructor(cpf: string, nome: string, curso: Cursos, matricula: string) {
+    this.cpf = cpf;
+    this.nome = nome;
+    this.curso = curso;
+    this.matricula = matricula;
+  }
 }
