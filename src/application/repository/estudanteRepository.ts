@@ -5,5 +5,5 @@ export default interface EstudanteRepository {
   updateEstudante(cpf: string, data: Estudante): Promise<Estudante>;
   deleteEstudante(id: string): Promise<any>;
   getEstudante(id: string): Promise<Estudante | void>;
-  getEstudantes(): Promise<Estudante[] | void>;
+  getEstudantes(): Promise<Estudante[]>;
 }
