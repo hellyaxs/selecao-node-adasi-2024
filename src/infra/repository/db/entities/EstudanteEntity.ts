@@ -5,7 +5,12 @@ import { Estudante } from 'src/domain/estudante/estudante';
 @Entity('estudantes')
 export default class EstudanteEntity {
   static fromDomain(estudante: Estudante): EstudanteEntity {
-    return new EstudanteEntity();
+    return new EstudanteEntity(
+      estudante.cpf,
+      estudante.nome,
+      CursosEntity.fromDomain(estudante.curso),
+      estudante.matricula,
+    );
   }
   static toDomain(estudante: EstudanteEntity): Estudante {
     return new Estudante(
@@ -15,6 +20,17 @@ export default class EstudanteEntity {
       estudante.matricula,
     );
   }
+  constructor(
+    cpf: string,
+    nome: string,
+    curso: CursosEntity,
+    matricula: string,
+  ) {
+    this.cpf = cpf;
+    this.nome = nome;
+    this.curso = curso;
+    this.matricula = matricula;
+  }
 
   @PrimaryColumn()
   cpf: string;
@@ -22,7 +38,7 @@ export default class EstudanteEntity {
   @Column({ nullable: false })
   nome: string;
 
-  @ManyToOne(() => CursosEntity, (curso) => curso.estudantes)
+  @ManyToOne(() => CursosEntity, (curso) => curso.estudantes, { eager: true })
   curso: CursosEntity;
 
   @Column({ nullable: false, unique: true })

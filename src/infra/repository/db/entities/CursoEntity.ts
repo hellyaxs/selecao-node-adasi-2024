@@ -1,4 +1,3 @@
-import { randomUUID, UUID } from 'crypto';
 import { Cursos } from 'src/domain/cursos/cursos';
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import EstudanteEntity from './EstudanteEntity';
@@ -10,14 +9,14 @@ export default class CursosEntity {
   @IsUUID()
   id: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, unique: true })
   nome: string;
 
   @OneToMany(() => EstudanteEntity, (estudante) => estudante.curso)
   estudantes: EstudanteEntity[];
 
-  constructor(id?: UUID, nome?: string) {
-    this.id = id ?? randomUUID();
+  constructor(id?: string, nome?: string) {
+    this.id = id;
     this.nome = nome;
   }
 
