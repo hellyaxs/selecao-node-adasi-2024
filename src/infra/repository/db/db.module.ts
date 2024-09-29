@@ -8,6 +8,7 @@ import EstudanteEntity from './entities/EstudanteEntity';
 import AtividadeEntity from './entities/AtividadeEntity';
 import DatabaseTarefasRepository from './sql/tarefasRepository.database';
 import DatabaseAtividadeRepository from './sql/atividadeRepository.database';
+import DatabaseEstudanteRepository from './sql/estudantesRepository.database';
 
 @Module({
   imports: [
@@ -41,11 +42,15 @@ import DatabaseAtividadeRepository from './sql/atividadeRepository.database';
     //   useClass: DatabaseAtividadeRepository,
     // },
     CursosRepositoryDB,
+    DatabaseTarefasRepository,
+    DatabaseAtividadeRepository,
+    DatabaseEstudanteRepository,
   ],
   exports: [
     CursosRepositoryDB,
     DatabaseTarefasRepository,
     DatabaseAtividadeRepository,
+    DatabaseEstudanteRepository,
   ],
 })
 export class DbModule {}

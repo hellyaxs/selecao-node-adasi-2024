@@ -22,8 +22,12 @@ export default class CursosRepositoryDB {
     this.entityRepository.delete(id);
   }
 
-  getCurso(id: string): Promise<CursosEntity | void> {
+  getCursoById(id: string): Promise<CursosEntity> {
     return this.entityRepository.findOneBy({ id } as { id: string });
+  }
+
+  getCurso(nome: string): Promise<CursosEntity> {
+    return this.entityRepository.findOneBy({ nome } as { nome: string });
   }
 
   getCursos(): Promise<CursosEntity[] | void> {

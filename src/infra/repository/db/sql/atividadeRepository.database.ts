@@ -3,12 +3,16 @@ import { Atividades } from 'src/domain/atividades/atividades';
 import { Repository } from 'typeorm';
 import AtividadeEntity from '../entities/AtividadeEntity';
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export default class DatabaseAtividadeRepository
   implements AtividadesRepository
 {
-  constructor(private readonly entityRepository: Repository<AtividadeEntity>) {}
+  constructor(
+    @InjectRepository(AtividadeEntity)
+    private readonly entityRepository: Repository<AtividadeEntity>,
+  ) {}
   createAtividade(data: Atividades): Promise<Atividades> {
     return this.entityRepository.save(data);
   }
@@ -20,12 +24,12 @@ export default class DatabaseAtividadeRepository
   }
   getAtividade(id: string): Promise<Atividades | void> {
     return this.entityRepository.findOneBy(id).then((atividade) => {
-      AtividadeEntity.toDomain(atividade);
+      return AtividadeEntity.toDomain(atividade);
     });
   }
   getAtividades(): Promise<Atividades[] | void> {
     return this.entityRepository.find().then((atividades) => {
-      atividades.map((atividade) => AtividadeEntity.toDomain(atividade));
+      return atividades.map((atividade) => AtividadeEntity.toDomain(atividade));
     });
   }
 }

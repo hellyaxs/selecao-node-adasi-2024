@@ -13,7 +13,7 @@ export default class DatabaseEstudanteRepository
     @InjectRepository(EstudanteEntity)
     private readonly entityRepository: Repository<EstudanteEntity>,
   ) {}
-  createEstudante(data: Estudante): Promise<Estudante> {
+  async createEstudante(data: Estudante): Promise<Estudante> {
     return this.entityRepository.save(data);
   }
   updateEstudante(cpf: string, data: Estudante): Promise<Estudante> {
@@ -26,12 +26,12 @@ export default class DatabaseEstudanteRepository
     return this.entityRepository
       .findOneBy({ cpf } as { cpf: string })
       .then((estudante) => {
-        EstudanteEntity.toDomain(estudante);
+        return EstudanteEntity.toDomain(estudante);
       });
   }
-  getEstudantes(): Promise<Estudante[] | void> {
+  getEstudantes(): Promise<Estudante[]> {
     return this.entityRepository.find().then((estudantes) => {
-      estudantes.map((estudante) => EstudanteEntity.toDomain(estudante));
+      return estudantes.map((estudante) => EstudanteEntity.toDomain(estudante));
     });
   }
 }

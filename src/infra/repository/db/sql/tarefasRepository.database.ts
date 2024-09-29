@@ -12,24 +12,24 @@ export default class DatabaseTarefasRepository implements TarefasRepository {
     private readonly entityRepository: Repository<TarefasEntity>,
   ) {}
   createTarefa(data: Tarefas): Promise<Tarefas> {
-    return this.entityRepository.save(data);
+    return this.entityRepository.save(TarefasEntity.fromDomain(data));
   }
-  updateTarefa(data: Tarefas): Promise<Tarefas> {
+  updateTarefa(id: string, data: Tarefas): Promise<Tarefas> {
     return this.entityRepository.update(data.id, data).then(() => data);
   }
   deleteTarefa(id: string): Promise<void> {
     return this.entityRepository.delete(id).then(() => undefined);
   }
-  getTarefa(id: string): Promise<Tarefas | void> {
+  getTarefa(id: string): Promise<Tarefas> {
     return this.entityRepository
       .findOneBy({ id } as { id: string })
       .then((tarefa) => {
-        TarefasEntity.toDomain(tarefa);
+        return TarefasEntity.toDomain(tarefa);
       });
   }
-  getTarefas(): Promise<Tarefas[] | void> {
+  getTarefas(): Promise<Tarefas[]> {
     return this.entityRepository.find().then((tarefas) => {
-      tarefas.map((tarefa) => TarefasEntity.toDomain(tarefa));
+      return tarefas.map((tarefa) => TarefasEntity.toDomain(tarefa));
     });
   }
 }
