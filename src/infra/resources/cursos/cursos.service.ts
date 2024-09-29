@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCursoDto } from './dto/create-curso.dto';
 import { UpdateCursoDto } from './dto/update-curso.dto';
-import CursosRepositoryDB from 'src/infra/repository/db/cursosRespository.database';
+
 import CursosEntity from 'src/infra/repository/db/entities/CursoEntity';
 import { UUID } from 'crypto';
+import CursosRepositoryDB from 'src/infra/repository/db/sql/cursosRespository.database';
 
 @Injectable()
 export class CursosService {
