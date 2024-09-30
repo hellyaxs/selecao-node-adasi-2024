@@ -1,5 +1,5 @@
 import { BadRequestException, Inject } from '@nestjs/common';
-import dayjs from 'dayjs';
+const dayjs = require('dayjs');
 import AtividadesRepository from 'src/application/repository/atividadesRepository';
 import { Atividades } from 'src/domain/atividades/atividades';
 
@@ -11,12 +11,13 @@ export default class CreateAtividadeUsecase {
 
   async execute(atividade: Atividades): Promise<Atividades> {
     if (
-      atividade.horario_agendado_inicio.getHours() -
-        atividade.horario_agendado_termino.getHours() >
-      6
+      dayjs(atividade.horario_agendado_termino).diff(
+        dayjs(atividade.horario_agendado_inicio),
+        'hour',
+      ) > 6
     ) {
       throw new Error(
-        'sua ativiade não pode ser criada, pois utrapassou o tempo limite de 6hrs',
+        'Sua atividade não pode ser criada, pois ultrapassou o tempo limite de 6 horas',
       );
     }
     const inicio = dayjs(atividade.horario_agendado_inicio);

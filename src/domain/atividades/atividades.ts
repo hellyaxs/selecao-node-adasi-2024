@@ -1,9 +1,9 @@
-import { UUID } from 'crypto';
+import { randomUUID, UUID } from 'crypto';
 import { Estudante } from '../estudante/estudante';
 import { Tarefas } from '../tarefas/tarefas';
 
 export class Atividades {
-  id: UUID;
+  id: string;
   tarefa: Tarefas;
   estudante: Estudante;
   data: Date;
@@ -21,7 +21,7 @@ export class Atividades {
     horario_de_incio?: Date,
     horario_de_termino?: Date,
   ) {
-    this.id = id as UUID;
+    this.id = (id as UUID) ?? randomUUID();
     this.tarefa = tarefa;
     this.estudante = estudante;
     this.data = data;

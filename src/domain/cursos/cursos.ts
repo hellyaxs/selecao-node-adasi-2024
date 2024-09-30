@@ -2,11 +2,11 @@ import { UUID } from 'crypto';
 import { v4 as uuidv4 } from 'uuid';
 
 export class Cursos {
-  id: UUID;
+  id: string;
   nome: string;
 
   constructor(id: string, nome: string) {
-    this.id = id as UUID;
+    this.id = id;
     this.nome = nome;
   }
 
