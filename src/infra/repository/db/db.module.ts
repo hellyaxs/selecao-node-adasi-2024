@@ -10,6 +10,8 @@ import DatabaseTarefasRepository from './sql/tarefasRepository.database';
 import DatabaseAtividadeRepository from './sql/atividadeRepository.database';
 import DatabaseEstudanteRepository from './sql/estudantesRepository.database';
 import CreateAtividadeUsecase from 'src/application/usecases/atividades/createAtividadeUsecase';
+import IniciarAtividadeUsecase from 'src/application/usecases/atividades/iniciarAtividadeUsecase';
+import finalizarAtividadeUsecase from 'src/application/usecases/atividades/encerrarAtividadeUsecase';
 
 @Module({
   imports: [
@@ -47,6 +49,8 @@ import CreateAtividadeUsecase from 'src/application/usecases/atividades/createAt
     DatabaseAtividadeRepository,
     DatabaseEstudanteRepository,
     CreateAtividadeUsecase,
+    IniciarAtividadeUsecase,
+    finalizarAtividadeUsecase,
   ],
   exports: [
     CursosRepositoryDB,
@@ -54,6 +58,8 @@ import CreateAtividadeUsecase from 'src/application/usecases/atividades/createAt
     DatabaseAtividadeRepository,
     DatabaseEstudanteRepository,
     CreateAtividadeUsecase,
+    IniciarAtividadeUsecase,
+    finalizarAtividadeUsecase,
   ],
 })
 export class DbModule {}

@@ -53,12 +53,16 @@ export default class DatabaseAtividadeRepository
     });
   }
   updateAtividade(id: string, data: Atividades): Promise<Atividades> {
-    throw new Error('Method not implemented.' + data);
+    return this.entityRepository
+      .update(id, AtividadeEntity.fromDomain(data))
+      .then((value) => {
+        return value.raw;
+      });
   }
   deleteAtividade(id: string): void {
     this.entityRepository.delete(id);
   }
-  getAtividade(id: string): Promise<Atividades | void> {
+  getAtividade(id: string): Promise<Atividades> {
     return this.entityRepository
       .findOne({
         where: { id },
