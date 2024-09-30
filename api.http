@@ -1,0 +1,27 @@
+### Cria uma nova atividade
+POST http://localhost:3000/atividades
+Content-Type: application/json
+
+{
+  "tarefa": {
+    "id": "d570c58c-50f5-4731-b538-fbbf4c6ed9cd"
+  },
+  "estudanteId": "000.000.100-00",
+  "horario_agendado_inicio": "2024-09-30T10:00:00Z",
+  "horario_agendado_termino": "2024-09-30T12:00:00Z"
+}
+
+### Obtém todas as atividades
+GET http://localhost:3000/atividades
+
+### Atualiza uma atividade existente
+PUT http://localhost:3000/atividades/1fc355a7-3f09-459f-80db-6f86c0adbe61
+Content-Type: application/json
+
+{
+  "horario_agendado_inicio": "2024-09-30T11:00:00Z",
+  "horario_agendado_termino": "2024-09-30T13:00:00Z"
+}
+
+### Deleta uma atividade
+DELETE http://localhost:3000/atividades/1fc355a7-3f09-459f-80db-6f86c0adbe61
