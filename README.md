@@ -68,6 +68,12 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## acesse a documentação da api pelo swagger
+
+```bash
+http://localhost:3000/api
+```
+
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
