@@ -38,7 +38,7 @@ export default class EstudanteEntity {
   @Column({ nullable: false })
   nome: string;
 
-  @ManyToOne(() => CursosEntity, (curso) => curso.estudantes, { eager: true })
+  @ManyToOne(() => CursosEntity, (curso) => curso.estudantes)
   curso: CursosEntity;
 
   @Column({ nullable: false, unique: true })

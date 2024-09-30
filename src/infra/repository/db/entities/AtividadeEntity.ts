@@ -1,5 +1,5 @@
 import { Atividades } from 'src/domain/atividades/atividades';
-import { Column, Entity, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 import TarefasEntity from './TarefasEntity';
 import EstudanteEntity from './EstudanteEntity';
 
@@ -8,10 +8,12 @@ export default class AtividadeEntity {
   @PrimaryColumn()
   private id: string;
 
-  @OneToOne(() => TarefasEntity)
+  @OneToOne(() => TarefasEntity, { eager: false })
+  @JoinColumn()
   private tarefa: TarefasEntity;
 
-  @OneToOne(() => EstudanteEntity)
+  @OneToOne(() => EstudanteEntity, { eager: false })
+  @JoinColumn()
   private estudante: EstudanteEntity;
 
   @Column({ type: 'date' })
@@ -19,7 +21,7 @@ export default class AtividadeEntity {
   @Column({ type: 'date' })
   private horario_agendado_termino: Date;
   @Column({ type: 'date' })
-  private horario_de_incio?: Date;
+  private horario_de_inicio?: Date;
   @Column({ type: 'date' })
   private horario_de_termino?: Date;
 
@@ -29,7 +31,7 @@ export default class AtividadeEntity {
     estudante: EstudanteEntity,
     horario_agendado_inicio: Date,
     horario_agendado_termino: Date,
-    horario_de_incio?: Date,
+    horario_de_inicio?: Date,
     horario_de_termino?: Date,
   ) {
     this.id = id;
@@ -37,14 +39,14 @@ export default class AtividadeEntity {
     this.estudante = estudante;
     this.horario_agendado_inicio = horario_agendado_inicio;
     this.horario_agendado_termino = horario_agendado_termino;
-    this.horario_de_incio = horario_de_incio;
+    this.horario_de_inicio = horario_de_inicio;
     this.horario_de_termino = horario_de_termino;
   }
 
   public static fromDomain(atividade: Atividades): AtividadeEntity {
     return new AtividadeEntity(
       atividade.id,
-      atividade.tarefa,
+      TarefasEntity.fromDomain(atividade.tarefa),
       EstudanteEntity.fromDomain(atividade.estudante),
       atividade.horario_agendado_inicio,
       atividade.horario_agendado_termino,
@@ -60,7 +62,7 @@ export default class AtividadeEntity {
       EstudanteEntity.toDomain(atividadeEntity.estudante),
       atividadeEntity.horario_agendado_inicio,
       atividadeEntity.horario_agendado_termino,
-      atividadeEntity.horario_de_incio,
+      atividadeEntity.horario_de_inicio,
       atividadeEntity.horario_de_termino,
     );
   }
