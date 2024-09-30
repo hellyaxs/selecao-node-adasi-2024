@@ -8,7 +8,7 @@ export class Atividades {
   estudante: Estudante;
   data: Date;
   horario_agendado_inicio: Date;
-  horario_agendado_termino: Date;
+  horario_agendado_termino!: Date;
   horario_de_incio?: Date;
   horario_de_termino?: Date;
   constructor(

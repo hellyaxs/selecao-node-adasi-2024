@@ -17,13 +17,13 @@ export default class AtividadeEntity {
   @JoinColumn()
   private estudante: EstudanteEntity;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'timestamp' })
   private horario_agendado_inicio: Date;
-  @Column({ type: 'date' })
+  @Column({ type: 'timestamp' })
   private horario_agendado_termino: Date;
-  @Column({ type: 'date' })
+  @Column({ type: 'timestamp' })
   private horario_de_inicio?: Date;
-  @Column({ type: 'date' })
+  @Column({ type: 'timestamp' })
   private horario_de_termino?: Date;
 
   constructor(

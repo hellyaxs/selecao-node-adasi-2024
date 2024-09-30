@@ -19,10 +19,10 @@ CREATE TABLE IF NOT EXISTS "estudantes" (
 
 CREATE TABLE IF NOT EXISTS "atividades" (
     "id" uuid PRIMARY KEY,
-    "horario_agendado_inicio" date NOT NULL,
-    "horario_agendado_termino" date NOT NULL,
-    "horario_de_inicio" date,
-    "horario_de_termino" date,
+    "horario_agendado_inicio" timestamp NOT NULL,
+    "horario_agendado_termino" timestamp NOT NULL,
+    "horario_de_inicio" timestamp,
+    "horario_de_termino" timestamp,
     "tarefaId" uuid,
     "estudanteCpf" varchar,
     FOREIGN KEY ("tarefaId") REFERENCES "tarefas"("id") ON DELETE SET NULL,
