@@ -5,11 +5,12 @@ import { Transform } from 'class-transformer';
 import * as moment from 'moment';
 import { Estudante } from 'src/domain/estudante/estudante';
 import { Tarefas } from 'src/domain/tarefas/tarefas';
+import { randomUUID } from 'crypto';
 
 export class CreateAtividadeDto {
   @ApiProperty({
     description: 'tarefaId',
-    example: 'c11f0fc1-d0b9-45bd-913b-77a0fb9e8fae',
+    example: randomUUID(),
   })
   @IsString()
   tarefaId: string;
@@ -23,7 +24,7 @@ export class CreateAtividadeDto {
 
   @ApiProperty({
     description: 'Data da atividade',
-    example: '2024-09-27T10:00:00Z',
+    example: new Date().toISOString().split('.')[0] + 'Z',
     type: String,
     format: 'date-time',
   })
@@ -32,7 +33,7 @@ export class CreateAtividadeDto {
 
   @ApiProperty({
     description: 'Horário agendado de início',
-    example: '2024-09-27T10:00:00Z',
+    example: new Date().toISOString().split('.')[0] + 'Z',
     type: String,
     format: 'date-time',
   })
@@ -41,7 +42,7 @@ export class CreateAtividadeDto {
 
   @ApiProperty({
     description: 'Horário agendado de término',
-    example: '2024-09-27T12:00:00Z',
+    example: new Date().toISOString().split('.')[0] + 'Z',
     type: String,
     format: 'date-time',
   })
@@ -50,7 +51,7 @@ export class CreateAtividadeDto {
 
   @ApiProperty({
     description: 'Horário real de início (opcional)',
-    example: '2024-09-27T10:15:00Z',
+    example: new Date().toISOString().split('.')[0] + 'Z',
     type: String,
     format: 'date-time',
     required: false,
@@ -60,7 +61,7 @@ export class CreateAtividadeDto {
 
   @ApiProperty({
     description: 'Horário real de término (opcional)',
-    example: '2024-09-27T12:15:00Z',
+    example: new Date().toISOString().split('.')[0] + 'Z',
     type: String,
     format: 'date-time',
     required: false,

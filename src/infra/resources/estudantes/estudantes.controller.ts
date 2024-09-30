@@ -30,13 +30,11 @@ export class EstudantesController {
   }
 
   @Get(':id')
-  @UseGuards(UUIDGuard)
   findOne(@Param('id') id: string) {
     return this.estudantesService.findOne(id);
   }
 
   @Patch(':id')
-  @UseGuards(UUIDGuard)
   update(
     @Param('id') id: string,
     @Body() updateEstudanteDto: UpdateEstudanteDto,

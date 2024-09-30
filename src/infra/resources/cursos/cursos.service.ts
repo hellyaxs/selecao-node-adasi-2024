@@ -21,7 +21,7 @@ export class CursosService {
   }
 
   findOne(id: string) {
-    return this.repository.getCurso(id);
+    return this.repository.getCursoById(id);
   }
 
   update(id: string, updateCursoDto: UpdateCursoDto) {

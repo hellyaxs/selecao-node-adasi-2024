@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 import { Cursos } from 'src/domain/cursos/cursos';
 import { Estudante } from 'src/domain/estudante/estudante';
+import { randomUUID } from 'crypto';
 
 export class CreateEstudanteDto {
   @ApiProperty({ description: 'cpf', example: '000.000.000-00' }) // Adiciona detalhes para o Swagger
@@ -11,7 +12,7 @@ export class CreateEstudanteDto {
   @ApiProperty({ description: 'Nome', example: 'jose antonio' })
   nome: string;
 
-  @ApiProperty({ description: 'id do curso', example: 'Curso de NestJS' })
+  @ApiProperty({ description: 'id do curso', example: randomUUID() })
   cursoId: string;
 
   cursoNome?: string;
