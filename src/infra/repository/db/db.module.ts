@@ -9,6 +9,7 @@ import AtividadeEntity from './entities/AtividadeEntity';
 import DatabaseTarefasRepository from './sql/tarefasRepository.database';
 import DatabaseAtividadeRepository from './sql/atividadeRepository.database';
 import DatabaseEstudanteRepository from './sql/estudantesRepository.database';
+import CreateAtividadeUsecase from 'src/application/usecases/atividades/createAtividadeUsecase';
 
 @Module({
   imports: [
@@ -37,20 +38,22 @@ import DatabaseEstudanteRepository from './sql/estudantesRepository.database';
     }),
   ],
   providers: [
-    // {
-    //   provide: 'atividadesRepository',
-    //   useClass: DatabaseAtividadeRepository,
-    // },
+    {
+      provide: 'atividadesRepository',
+      useClass: DatabaseAtividadeRepository,
+    },
     CursosRepositoryDB,
     DatabaseTarefasRepository,
     DatabaseAtividadeRepository,
     DatabaseEstudanteRepository,
+    CreateAtividadeUsecase,
   ],
   exports: [
     CursosRepositoryDB,
     DatabaseTarefasRepository,
     DatabaseAtividadeRepository,
     DatabaseEstudanteRepository,
+    CreateAtividadeUsecase,
   ],
 })
 export class DbModule {}

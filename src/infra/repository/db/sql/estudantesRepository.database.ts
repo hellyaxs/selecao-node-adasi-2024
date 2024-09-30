@@ -22,16 +22,20 @@ export default class DatabaseEstudanteRepository
   deleteEstudante(id: string): Promise<any> {
     return this.entityRepository.delete(id).then(() => undefined);
   }
-  getEstudante(cpf: string): Promise<Estudante | void> {
+  getEstudante(cpf: string): Promise<Estudante> {
     return this.entityRepository
-      .findOneBy({ cpf } as { cpf: string })
+      .findOne({ where: { cpf }, relations: ['curso'] })
       .then((estudante) => {
         return EstudanteEntity.toDomain(estudante);
       });
   }
   getEstudantes(): Promise<Estudante[]> {
-    return this.entityRepository.find().then((estudantes) => {
-      return estudantes.map((estudante) => EstudanteEntity.toDomain(estudante));
-    });
+    return this.entityRepository
+      .find({ relations: ['curso'] })
+      .then((estudantes) => {
+        return estudantes.map((estudante) =>
+          EstudanteEntity.toDomain(estudante),
+        );
+      });
   }
 }
