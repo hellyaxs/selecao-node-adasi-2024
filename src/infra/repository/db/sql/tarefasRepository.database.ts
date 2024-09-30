@@ -4,6 +4,7 @@ import { Tarefas } from 'src/domain/tarefas/tarefas';
 import { Repository } from 'typeorm';
 import TarefasEntity from '../entities/TarefasEntity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UUID } from 'crypto';
 
 @Injectable()
 export default class DatabaseTarefasRepository implements TarefasRepository {
@@ -22,7 +23,7 @@ export default class DatabaseTarefasRepository implements TarefasRepository {
   }
   getTarefa(id: string): Promise<Tarefas> {
     return this.entityRepository
-      .findOneBy({ id } as { id: string })
+      .findOneBy({ id } as { id: UUID })
       .then((tarefa) => {
         return TarefasEntity.toDomain(tarefa);
       });

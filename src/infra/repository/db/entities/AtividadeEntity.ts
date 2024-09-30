@@ -2,13 +2,12 @@ import { Atividades } from 'src/domain/atividades/atividades';
 import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 import TarefasEntity from './TarefasEntity';
 import EstudanteEntity from './EstudanteEntity';
-import { IsUUID } from 'class-validator';
+import { UUID } from 'crypto';
 
 @Entity('atividades')
 export default class AtividadeEntity {
   @PrimaryColumn()
-  @IsUUID()
-  private id: string;
+  private id: UUID;
 
   @OneToOne(() => TarefasEntity, { eager: false })
   @JoinColumn()
@@ -36,7 +35,7 @@ export default class AtividadeEntity {
     horario_de_inicio?: Date,
     horario_de_termino?: Date,
   ) {
-    this.id = id;
+    this.id = id as UUID;
     this.tarefa = tarefa;
     this.estudante = estudante;
     this.horario_agendado_inicio = horario_agendado_inicio;

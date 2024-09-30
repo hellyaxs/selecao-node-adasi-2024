@@ -2,12 +2,13 @@ import { Cursos } from 'src/domain/cursos/cursos';
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import EstudanteEntity from './EstudanteEntity';
 import { IsUUID } from 'class-validator';
+import { UUID } from 'crypto';
 
 @Entity('cursos')
 export default class CursosEntity {
   @PrimaryColumn()
   @IsUUID()
-  id: string;
+  id: UUID;
 
   @Column({ nullable: false, unique: true })
   nome: string;
@@ -16,7 +17,7 @@ export default class CursosEntity {
   estudantes: EstudanteEntity[];
 
   constructor(id?: string, nome?: string) {
-    this.id = id;
+    this.id = id as UUID;
     this.nome = nome;
   }
 

@@ -1,3 +1,4 @@
+import { UUID } from 'crypto';
 import { Tarefas } from 'src/domain/tarefas/tarefas';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
@@ -10,13 +11,13 @@ export default class TarefasEntity {
     return new Tarefas(tarefa.id, tarefa.nome);
   }
   @PrimaryColumn()
-  id: string;
+  id: UUID;
 
   @Column()
   nome: string;
 
   constructor(id: string, nome: string) {
-    this.id = id;
+    this.id = id as UUID;
     this.nome = nome;
   }
 }

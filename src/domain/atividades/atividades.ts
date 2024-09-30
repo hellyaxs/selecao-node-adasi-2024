@@ -3,7 +3,7 @@ import { Estudante } from '../estudante/estudante';
 import { Tarefas } from '../tarefas/tarefas';
 
 export class Atividades {
-  id: string;
+  id: UUID;
   tarefa: Tarefas;
   estudante: Estudante;
   data: Date;

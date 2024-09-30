@@ -2,6 +2,7 @@ import { Repository } from 'typeorm';
 import CursosEntity from '../entities/CursoEntity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UUID } from 'crypto';
 
 @Injectable()
 export default class CursosRepositoryDB {
@@ -23,7 +24,7 @@ export default class CursosRepositoryDB {
   }
 
   getCursoById(id: string): Promise<CursosEntity> {
-    return this.entityRepository.findOneBy({ id } as { id: string });
+    return this.entityRepository.findOneBy({ id } as { id: UUID });
   }
 
   getCurso(nome: string): Promise<CursosEntity> {

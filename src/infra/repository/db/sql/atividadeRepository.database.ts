@@ -44,6 +44,8 @@ export default class DatabaseAtividadeRepository
       estudante,
       data.horario_agendado_inicio,
       data.horario_agendado_termino,
+      data?.horario_de_incio,
+      data?.horario_de_termino,
     );
 
     return this.entityRepository.save(atividadeEntity).then((atividade) => {
