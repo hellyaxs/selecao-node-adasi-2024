@@ -1,4 +1,3 @@
-import { IsUUID } from 'class-validator';
 import { Tarefas } from 'src/domain/tarefas/tarefas';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
@@ -11,7 +10,6 @@ export default class TarefasEntity {
     return new Tarefas(tarefa.id, tarefa.nome);
   }
   @PrimaryColumn()
-  @IsUUID()
   id: string;
 
   @Column()

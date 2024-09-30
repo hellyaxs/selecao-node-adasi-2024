@@ -2,7 +2,7 @@ import AtividadesRepository from 'src/application/repository/atividadesRepositor
 import { Atividades } from 'src/domain/atividades/atividades';
 import { Repository } from 'typeorm';
 import AtividadeEntity from '../entities/AtividadeEntity';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import TarefasEntity from '../entities/TarefasEntity';
 import EstudanteEntity from '../entities/EstudanteEntity';
@@ -23,10 +23,21 @@ export default class DatabaseAtividadeRepository
     const tarefa = await this.tarefasRepository.findOne({
       where: { id: data.tarefa.id },
     });
+    if (!tarefa) {
+      throw new NotFoundException(
+        `Tarefa com ID ${data.tarefa.id} não encontrada.`,
+      );
+    }
+
     const estudante = await this.estudanteRepository.findOne({
       where: { cpf: data.estudante.cpf },
       relations: ['curso'],
     });
+    if (!estudante) {
+      throw new NotFoundException(
+        `Estudante com CPF ${data.estudante.cpf} não encontrado.`,
+      );
+    }
     const atividadeEntity = new AtividadeEntity(
       data.id,
       tarefa,

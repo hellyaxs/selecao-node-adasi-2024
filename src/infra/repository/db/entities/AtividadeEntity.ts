@@ -2,10 +2,12 @@ import { Atividades } from 'src/domain/atividades/atividades';
 import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 import TarefasEntity from './TarefasEntity';
 import EstudanteEntity from './EstudanteEntity';
+import { IsUUID } from 'class-validator';
 
 @Entity('atividades')
 export default class AtividadeEntity {
   @PrimaryColumn()
+  @IsUUID()
   private id: string;
 
   @OneToOne(() => TarefasEntity, { eager: false })

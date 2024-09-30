@@ -16,7 +16,7 @@ export default class CreateAtividadeUsecase {
         'hour',
       ) > 6
     ) {
-      throw new Error(
+      throw new BadRequestException(
         'Sua atividade não pode ser criada, pois ultrapassou o tempo limite de 6 horas',
       );
     }
