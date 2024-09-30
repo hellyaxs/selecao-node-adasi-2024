@@ -6,11 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { AtividadesService } from './atividades.service';
 import { CreateAtividadeDto } from './dto/create-atividade.dto';
 import { UpdateAtividadeDto } from './dto/update-atividade.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { UUIDGuard } from '../utils/uuidguard/uuidguard.guard';
 
 @ApiTags('atividades')
 @Controller('atividades')
@@ -28,6 +30,7 @@ export class AtividadesController {
   }
 
   @Get(':id')
+  @UseGuards(UUIDGuard) // Aplicando o guard
   findOne(@Param('id') id: string) {
     return this.atividadesService.findOne(id);
   }
@@ -41,6 +44,7 @@ export class AtividadesController {
   // }
 
   @Delete(':id')
+  @UseGuards(UUIDGuard)
   remove(@Param('id') id: string) {
     return this.atividadesService.remove(id);
   }
