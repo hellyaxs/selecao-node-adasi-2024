@@ -74,28 +74,54 @@ $ npm run test:cov
 http://localhost:3000/api
 ```
 
-## Resources
+# Escopo do Projeto
 
-Check out a few resources that may come in handy when working with NestJS:
+## Objetivo:
+Desenvolver uma API RESTful em Node.js para gerenciar cursos, estudantes, tarefas e atividades, incluindo funcionalidades específicas de agendamento de atividades, seguindo regras de negócio precisas.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## Tecnologias:
+- **Backend**: Node.js com Express ou NestJS.
+- **Banco de Dados**: PostgreSQL.
+- **ORM/Query Builder**: Sequelize, TypeORM (para NestJS) ou outra biblioteca de preferência do candidato.
+- **Migrations**: Ferramenta de migrations do ORM escolhido.
 
-## Support
+# Requisitos Funcionais
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+1. **CRUD de Cursos**:
+   - Atributos: \`id\` (UUID), \`nome\` (string).
+   - Rotas: Criar, listar, atualizar e deletar cursos.
 
-## Stay in touch
+2. **CRUD de Estudantes**:
+   - Atributos: \`cpf\` (string, único), \`nome\` (string), \`curso\` (relacionado a Cursos), \`matrícula\` (string, único).
+   - Rotas: Criar, listar, atualizar e deletar estudantes.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+3. **CRUD de Tarefas**:
+   - Atributos: \`id\` (UUID), \`nome\` (string).
+   - Rotas: Criar, listar, atualizar e deletar tarefas.
 
-## License
+4. **CRUD de Atividades**:
+   - Atributos: \`id\` (UUID), \`tarefa\` (relacionado a Tarefas), \`estudante\` (relacionado a Estudantes), \`data\` (date), \`hora agendamento inicio\` (time), \`hora agendamento término\` (time), \`hora início\` (time, opcional), \`hora término\` (time, opcional).
+   - Rotas: Criar, listar, atualizar e deletar atividades. Incluir rotas para iniciar e finalizar uma atividade (modificar \`hora início\` e \`hora término\`).
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+5. **Regras de Agendamento**:
+   - A duração da atividade não pode ultrapassar 6 horas.
+   - Data e hora de término não podem ser anteriores à data e hora de início.
+   - Uma atividade só pode ser iniciada com uma tolerância de 15 minutos para mais ou para menos.
+   - Uma atividade pode ser encerrada a qualquer momento após o início.
+
+# Requisitos Não Funcionais
+
+1. **Segurança**: Implementar medidas básicas de segurança, como validação de entradas para prevenir injeção SQL.
+2. **Documentação**: Documentar as rotas da API com Postman ou similar.
+3. **Código e Estrutura do Projeto**: Código limpo, bem organizado e seguindo as melhores práticas de desenvolvimento em Node.js.
+
+# Entrega
+
+- Código-fonte em um repositório Git (privado ou público, conforme preferência da organização).
+- Instruções de configuração e execução do projeto, incluindo como rodar as migrations e os testes.
+
+## Prazo de Entrega Inicial:
+O prazo de entrega para o projeto é de 7 dias a partir da data de recebimento deste teste. Acreditamos que esse prazo é suficiente para concluir as tarefas propostas, considerando um planejamento e gestão de tempo eficazes.
+
+## Solicitação de Extensão de Prazo:
+Entendemos que imprevistos podem ocorrer e que cada desenvolvedor tem um ritmo de trabalho. Caso precise de mais tempo para concluir o projeto, é possível solicitar uma extensão do prazo. No entanto, pedimos que nos informe até o 6º dia do prazo inicial, incluindo um argumento sólido que justifique a necessidade de mais tempo.
