@@ -13,6 +13,9 @@ COPY . .
 # Compilando o projeto
 RUN npm run build
 
+# Executando as migrations
+RUN npm run typeorm -- -d ./src/infra/repository/db/typeOrm.migration-config.ts migration:run
+
 # Expondo a porta que o aplicativo irá rodar
 EXPOSE 3000
 

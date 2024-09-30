@@ -32,6 +32,11 @@
 $ npm install
 ```
 
+execute as migrations 
+```bash
+$ npm run typeorm -- -d ./src/infra/repository/db/typeOrm.migration-config.ts migration:run
+```
+
 ## Compile and run the project
 
 ```bash
