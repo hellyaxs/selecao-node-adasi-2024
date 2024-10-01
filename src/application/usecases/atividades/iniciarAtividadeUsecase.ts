@@ -28,7 +28,7 @@ export default class IniciarAtividadeUsecase {
         `A atividade só pode ser iniciada dentro de uma tolerância de 15 minutos para mais ou para menos.`,
       );
     }
-    atividade.horario_de_incio = horario_start;
+    atividade.horario_de_inicio = horario_start;
     return await this.atividadesRepository.updateAtividade(
       atividade.id,
       atividade,

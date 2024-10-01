@@ -9,7 +9,7 @@ export default class finalizarAtividadeUsecase {
   ) {}
 
   async execute(horario_end: Date, atividade: Atividades): Promise<Atividades> {
-    if (!atividade.horario_de_incio) {
+    if (!atividade.horario_de_inicio) {
       throw new BadRequestException(
         `A atividade ainda não iniciada, não é possível finalizá-la.`,
       );

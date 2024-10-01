@@ -8,8 +8,8 @@ export class Atividades {
   estudante: Estudante;
   data: Date;
   horario_agendado_inicio: Date;
-  horario_agendado_termino!: Date;
-  horario_de_incio?: Date;
+  horario_agendado_termino: Date;
+  horario_de_inicio?: Date;
   horario_de_termino?: Date;
   constructor(
     id: string,
@@ -18,7 +18,7 @@ export class Atividades {
     data: Date,
     horario_agendado_inicio: Date,
     horario_agendado_termino: Date,
-    horario_de_incio?: Date,
+    horario_de_inicio?: Date,
     horario_de_termino?: Date,
   ) {
     this.id = (id as UUID) ?? randomUUID();
@@ -27,7 +27,7 @@ export class Atividades {
     this.data = data;
     this.horario_agendado_inicio = horario_agendado_inicio;
     this.horario_agendado_termino = horario_agendado_termino;
-    this.horario_de_incio = horario_de_incio;
+    this.horario_de_inicio = horario_de_inicio;
     this.horario_de_termino = horario_de_termino;
   }
 }

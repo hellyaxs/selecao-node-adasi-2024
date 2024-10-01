@@ -42,9 +42,10 @@ export default class DatabaseAtividadeRepository
       data.id,
       tarefa,
       estudante,
+      data.data,
       data.horario_agendado_inicio,
       data.horario_agendado_termino,
-      data?.horario_de_incio,
+      data?.horario_de_inicio,
       data?.horario_de_termino,
     );
 

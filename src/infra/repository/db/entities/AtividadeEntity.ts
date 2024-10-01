@@ -18,6 +18,9 @@ export default class AtividadeEntity {
   private estudante: EstudanteEntity;
 
   @Column({ type: 'timestamp' })
+  private data: Date;
+
+  @Column({ type: 'timestamp' })
   private horario_agendado_inicio: Date;
   @Column({ type: 'timestamp' })
   private horario_agendado_termino: Date;
@@ -30,6 +33,7 @@ export default class AtividadeEntity {
     id: string,
     tarefa: TarefasEntity,
     estudante: EstudanteEntity,
+    data: Date,
     horario_agendado_inicio: Date,
     horario_agendado_termino: Date,
     horario_de_inicio?: Date,
@@ -38,6 +42,7 @@ export default class AtividadeEntity {
     this.id = id as UUID;
     this.tarefa = tarefa;
     this.estudante = estudante;
+    this.data = data;
     this.horario_agendado_inicio = horario_agendado_inicio;
     this.horario_agendado_termino = horario_agendado_termino;
     this.horario_de_inicio = horario_de_inicio;
@@ -49,9 +54,10 @@ export default class AtividadeEntity {
       atividade.id,
       TarefasEntity.fromDomain(atividade.tarefa),
       EstudanteEntity.fromDomain(atividade.estudante),
+      atividade.data,
       atividade.horario_agendado_inicio,
       atividade.horario_agendado_termino,
-      atividade.horario_de_incio,
+      atividade.horario_de_inicio,
       atividade.horario_de_termino,
     );
   }
@@ -61,6 +67,7 @@ export default class AtividadeEntity {
       atividadeEntity.id,
       TarefasEntity.toDomain(atividadeEntity.tarefa),
       EstudanteEntity.toDomain(atividadeEntity.estudante),
+      atividadeEntity.data,
       atividadeEntity.horario_agendado_inicio,
       atividadeEntity.horario_agendado_termino,
       atividadeEntity.horario_de_inicio,
