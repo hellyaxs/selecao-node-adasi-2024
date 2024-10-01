@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS "estudantes" (
 
 CREATE TABLE IF NOT EXISTS "atividades" (
     "id" uuid PRIMARY KEY,
+    "data" timestamp,
     "horario_agendado_inicio" timestamp NOT NULL,
     "horario_agendado_termino" timestamp NOT NULL,
     "horario_de_inicio" timestamp,

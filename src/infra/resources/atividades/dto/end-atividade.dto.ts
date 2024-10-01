@@ -7,5 +7,5 @@ export class EndAtividadeDto extends OmitType(PartialType(CreateAtividadeDto), [
   'data',
   'horario_agendado_inicio',
   'horario_agendado_termino',
-  'horario_de_incio',
+  'horario_de_inicio',
 ] as const) {}

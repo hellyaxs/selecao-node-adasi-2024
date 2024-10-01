@@ -15,9 +15,11 @@ export class AtividadesService {
     private readonly finalizaratividade: finalizarAtividadeUsecase,
   ) {}
   async create(createAtividadeDto: CreateAtividadeDto) {
-    return this.createUsecase.execute(
-      CreateAtividadeDto.toDomain(createAtividadeDto),
-    );
+    return this.createUsecase
+      .execute(CreateAtividadeDto.toDomain(createAtividadeDto))
+      .then((atividade) => {
+        return atividade;
+      });
   }
 
   findAll() {

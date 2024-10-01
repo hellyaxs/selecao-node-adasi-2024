@@ -44,7 +44,7 @@ export class AtividadesController {
   ) {
     return this.atividadesService.iniciarAtividade(
       id,
-      updateAtividadeDto.horario_de_incio,
+      updateAtividadeDto.horario_de_inicio,
     );
   }
   @Patch('end/:id')

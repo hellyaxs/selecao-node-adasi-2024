@@ -19,7 +19,7 @@ export class UpdateAtividadeDto extends OmitType(
       updateAtividadeDto.data,
       null,
       null,
-      updateAtividadeDto.horario_de_incio,
+      updateAtividadeDto.horario_de_inicio,
       updateAtividadeDto.horario_de_termino,
     );
   }

@@ -57,7 +57,7 @@ export class CreateAtividadeDto {
     required: false,
   })
   @Transform(({ value }) => (value ? moment(value).toISOString(true) : null))
-  horario_de_incio?: Date;
+  horario_de_inicio?: Date;
 
   @ApiProperty({
     description: 'Horário real de término (opcional)',
@@ -77,7 +77,7 @@ export class CreateAtividadeDto {
       createAtividadeDto.data,
       createAtividadeDto.horario_agendado_inicio,
       createAtividadeDto.horario_agendado_termino,
-      createAtividadeDto.horario_de_incio,
+      createAtividadeDto.horario_de_inicio,
       createAtividadeDto.horario_de_termino,
     );
   }
